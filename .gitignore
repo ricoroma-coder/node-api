@@ -9,4 +9,5 @@ ormconfig.json
 dist
 uploads/*
 !uploads/.gitkeep
+package-lock.json
 passos.txt
