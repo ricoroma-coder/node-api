@@ -6,6 +6,8 @@
   "author": "Henrique Roma <roma.fulldev@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
     "@types/node": "^16.7.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
@@ -21,5 +23,10 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1"
   }
 }
