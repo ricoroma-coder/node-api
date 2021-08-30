@@ -1,4 +1,5 @@
 import AppError from "@shared/errors/AppError"
+import { hash } from "bcryptjs"
 import { getCustomRepository } from "typeorm"
 import User from "../typeorm/entities/User"
 import UsersRepository from "../typeorm/repositories/UsersRepository"
@@ -21,10 +22,12 @@ class CreateUserService {
 		if (nameExists)
 			throw new AppError ("Username already exists")
 
+		const encrypted = await hash(password, 8)
+
 		const user = userRepository.create({
 			name,
 			email,
-			password
+			password: encrypted
 		})
 
 		await userRepository.save(user)

@@ -11,3 +11,4 @@ uploads/*
 !uploads/.gitkeep
 package-lock.json
 passos.txt
+yarn-error.log
