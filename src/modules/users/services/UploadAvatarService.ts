@@ -8,7 +8,7 @@ import fs from "fs"
 
 interface IRequest {
 	userId: string
-	avatar: string
+	avatar: string | undefined
 }
 
 class UpdateAvatarService {
@@ -18,6 +18,9 @@ class UpdateAvatarService {
 
 		if (!user)
 			throw new AppError("User not found", 404)
+
+		if (typeof avatar == 'undefined')
+			throw new AppError("Image not found", 404)
 
 		if (user.avatar) {
 			const avatarPath = path.join(uploadConfig.directory, user.avatar)
