@@ -4,6 +4,7 @@ import { sign } from "jsonwebtoken"
 import { getCustomRepository } from "typeorm"
 import User from "../typeorm/entities/User"
 import UsersRepository from "../typeorm/repositories/UsersRepository"
+import authConfig from '@config/auth'
 
 interface IRequest {
 	email: string
@@ -30,8 +31,8 @@ class CreateSessionService {
 
 		const token = sign(
 			{},
-			"468494e592514961154ca58d4e344c0b", //md5 gerado de "asdqwezxcfghrtyvbnyuihjknmlop"
-			{subject: user.id, expiresIn: '1d'}
+			authConfig.jwt.secret,
+			{subject: user.id, expiresIn: authConfig.jwt.expiresIn}
 		)
 
 		return { user, token }
