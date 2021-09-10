@@ -13,7 +13,7 @@ export default function isAuthenticated(request: Request, response: Response, ne
 	const authHeader = request.headers.authorization
 
 	if (!authHeader)
-		throw new AppError("Inválid JWT Token", 401)
+		throw new AppError("Invalid JWT Token", 401)
 
 	const [,token] = authHeader.split(" ")
 
@@ -28,6 +28,6 @@ export default function isAuthenticated(request: Request, response: Response, ne
 
 		return next()
 	} catch {
-		throw new AppError("Inválid JWT Token", 401)
+		throw new AppError("Invalid JWT Token", 401)
 	}
 }

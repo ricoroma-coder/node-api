@@ -1,9 +1,13 @@
-import { Request, Response } from "express";
-import CreateUserService from "../services/CreateUserService";
-import UpdateUserService from "../services/UpdateUserService";
-import ListUserService from "../services/ListUserService";
-import ShowUserService from "../services/ShowUserService";
-import DeleteUserService from "../services/DeleteUserService";
+import { Request, Response } from "express"
+import CreateUserService from "../services/CreateUserService"
+import UpdateUserService from "../services/UpdateUserService"
+import ListUserService from "../services/ListUserService"
+import ShowUserService from "../services/ShowUserService"
+import DeleteUserService from "../services/DeleteUserService"
+
+
+//import fetch from "node-fetch"
+
 
 export default class UsersController {
 	public async index(request: Request, response: Response): Promise<Response> {
@@ -39,5 +43,35 @@ export default class UsersController {
 		const deleteUser = new DeleteUserService()
 		await deleteUser.execute({ id })
 		return response.json([])
+	}
+
+	public async test(request: Request, response: Response): Promise<Response> {
+
+		/////////////////////////////////
+
+		const axios = require('axios')
+		let param: any = ''
+
+		await axios.get('http://127.0.0.1:3000/test?test=test')
+		.then((ret: Response) => {
+			param = ret.json()
+		  })
+		  .catch((error: any) => {
+			console.log(error)
+		  })
+
+		//////////////////////////////////
+
+		return response.json(param)
+	}
+
+	public async test2(request: Request, response: Response): Promise<Response> {
+
+		const obj = {
+			headers: request.headers,
+			body: request.body
+		}
+
+		return response.json(obj)
 	}
 }
